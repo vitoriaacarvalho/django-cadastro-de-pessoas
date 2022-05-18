@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Cadastro de Pessoas</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    {% if user.is_authenticaded %}
+    <ul>
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'pessoa.index' %}">Pessoas</a></li>
+    </ul>
+    {% endif %}
+    {% block content %}
+    {% endblock content %}
+  </body>
+</html>

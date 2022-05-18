@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<a href="{% url 'pessoa.novo' %}">Novo</a>
+<form action="get">
+    <input type="text" placeholder="Buscar por nome" name="nomes">
+    <input type="submit" value="buscar">
+</form>
+<table>
+<thead>
+    <tr>
+        <th>Nome</th>
+        <th>Data de nascimento</th>
+        <th>Ativa</th>
+        <th>Ações</th>
+    </tr>
+</thead>
+    <tbody>
+        {% for pessoa in object_list %}
+        <tr>
+            <td>{{pessoa.nome}}</td>
+            <td>{{pessoa.nasc}}</td>
+            <td>
+                {% if pessoa.ativa %}
+                Sim
+                {% else %}
+                Não
+                {% endif %}
+            </td>
+            <td>
+                <a href="{% url 'pessoa.editar' pessoa.pk %}">Editar</a>
+                <a href="{% url 'pessoa.remove' pessoa.pk %}">Apagar</a>
+                <a href="{% url 'pessoa.contatos' pessoa.pk %}">Contatos</a>
+            </td>
+    </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}
+<!--isso so vai funcionar com a criação do forms.py, ele vai mandar os cadastros para o bd-->
